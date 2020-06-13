@@ -1,0 +1,20 @@
+{
+  "name": "firebird-query",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --expose-gc start.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "firebird": "github:xdenser/node-firebird-libfbclient",
+    "morgan": "^1.10.0",
+    "node-firebird": "^0.9.2"
+  }
+}
