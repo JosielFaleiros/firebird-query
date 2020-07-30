@@ -48,7 +48,7 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
   try {
     const result = await query(req.body.sql, req.body.params)
-    res.status(200).json(result)
+    res.status(200).send(result)
   } catch (e) {
     console.log(e)
     res.status(500).send('i s e')
