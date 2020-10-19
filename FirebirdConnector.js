@@ -20,9 +20,9 @@ export default class FirebirdConnector {
     options.database = process.env.ERP_DATABASE
     options.user = process.env.ERP_USERNAME
     options.password = process.env.ERP_PASSWORD
-    options.lowercase_keys = false // set to true to lowercase keys
+    options.lowercase_keys = true // set to true to lowercase keys
     options.role = null            // default
-    options.pageSize = 4096        // default when creating database
+    options.pageSize = 16384        // default when creating database
     return new Promise((resolve, reject) => {
       Firebird.attach(options, (err, db) => {
         if (err)
