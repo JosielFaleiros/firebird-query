@@ -29,6 +29,6 @@ export default class SpreadSheetService {
   }
 
   static isThere(fullfile, filepath) {
-    return fs.existsSync(require('path').join(__dirname, filepath, fullfile))
+    return fs.existsSync(require('path').join(__dirname, '.' + filepath, fullfile))
   }
 }
