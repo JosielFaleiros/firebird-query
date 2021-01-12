@@ -68,7 +68,7 @@ app.post('/generate-xlsx', async (req, res) => {
     const resultXlsx = await SpreadSheetService.createXlsxFile(
       '/files/',
       SpreadSheetService.getName(  SpreadSheetService.randomString(6) + '.xlsx'),
-      [['column_a', 'column_b'], {column_a: 'value a1', column_b: 'value b1'}, {column_a: 'value a2', column_b: 'value b2'}]
+      [['column_a', 'column_b'], ['value a1', 'value b1'], ['value a2', 'value b2']]
     )
 
     res.status(200).send({resultXlsx})
