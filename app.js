@@ -35,6 +35,8 @@ async function query (sql, params) {
   })
 }
 
+app.use('/files', express.static((require('path').join(__dirname, './files'))))
+
 app.get('/', async (req, res) => {
   try {
     await query()
@@ -49,6 +51,24 @@ app.post('/', async (req, res) => {
   try {
     const result = await query(req.body.sql, req.body.params)
     res.status(200).send(result)
+  } catch (e) {
+    console.log(e)
+    res.status(500).send('i s e')
+  }
+})
+
+app.post('/generate-xlsx', async (req, res) => {
+  try {
+    const result = await query(req.body.sql, req.body.params)
+    // const file = await SpreadSheetService.createXlsxFile(familyProductsFilesPath, SpreadSheetService.getName(SpreadSheetService.randomString(6) + '.xlsx', familyProductsFilesPath), [ ['Cod. Fab'], ...(await data)])
+
+    const resultXlsx = await SpreadSheetService.createXlsxFile(
+      '/files/',
+      SpreadSheetService.getName(  SpreadSheetService.randomString(6) + '.xlsx'),
+      [['column_a', 'column_b'], {column_a: 'value a1', column_b: 'value b1'}, {column_a: 'value a2', column_b: 'value b2'}]
+    )
+
+    res.status(200).send({resultXlsx})
   } catch (e) {
     console.log(e)
     res.status(500).send('i s e')

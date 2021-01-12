@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "firebird": "github:xdenser/node-firebird-libfbclient",
     "morgan": "^1.10.0",
-    "node-firebird": "^0.9.2"
+    "node-firebird": "^0.9.2",
+    "node-xlsx": "^0.16.1"
   }
 }
