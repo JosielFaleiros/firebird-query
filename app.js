@@ -65,10 +65,13 @@ app.post('/generate-xlsx', async (req, res) => {
     const result = await query(req.body.sql, req.body.params)
     // const file = await SpreadSheetService.createXlsxFile(familyProductsFilesPath, SpreadSheetService.getName(SpreadSheetService.randomString(6) + '.xlsx', familyProductsFilesPath), [ ['Cod. Fab'], ...(await data)])
 
+    const headers = Object.keys((result||[{}])[0])
+    const dataRows = await Promise.all(result.map(el => headers.reduce((acc, key) => [...acc, el[key]], [])))
+
     const resultXlsx = await SpreadSheetService.createXlsxFile(
       '/files/',
       SpreadSheetService.getName(  SpreadSheetService.randomString(6) + '.xlsx'),
-      [['column_a', 'column_b'], ['value a1', 'value b1'], ['value a2', 'value b2']]
+      [headers, ...dataRows]
     )
 
     res.status(200).send({resultXlsx})
