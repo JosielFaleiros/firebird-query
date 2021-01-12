@@ -8,7 +8,7 @@ export default class SpreadSheetService {
     return new Promise((resolve, reject) => {
       const buffer = nodeXlsx.build([{ name: 'sheet-0', data: data }])
       if (!filepath || !fileName) return resolve(buffer)
-      fs.writeFile(require('path').join(__dirname, '../..' + filepath, fileName), buffer, (err) => {
+      fs.writeFile(require('path').join(__dirname, '.' + filepath, fileName), buffer, (err) => {
         if (err) reject(err)
         console.log('Done...')
         resolve(filepath + fileName)
